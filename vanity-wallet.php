@@ -177,6 +177,8 @@ if ($sanity && !check_findable($sanity)) die("Numbers and letters only, please\n
 $vanity = trim(readline("If more particular, what case insensitive string would you like the wallet to start with? "));
 if ($vanity && !check_findable($vanity)) die("Numbers and letters only, please\n");
 
+echo "Ok, we will look for [".$sanity."] or [".$vanity."]\n";
+
 $args = array(
 	"curve_name" => "secp256k1",
 	"private_key_type" => OPENSSL_KEYTYPE_EC,
@@ -198,8 +200,10 @@ while(1) {
 
         $address=get_address($public_key);
 
+	echo $address."\n";
+
 	if (($vanity && stripos($address, $vanity) !== FALSE && stripos($address, $vanity) === 0) ||
-		($sanity && stripos($address, $vanity) !== FALSE && stripos($address, $sanity) >= 0)) {
+		($sanity && stripos($address, $sanity) !== FALSE && stripos($address, $sanity) >= 0)) {
 		echo "Found a match: ".$address."\n";
 		$cont = readline("Would you like to use this? (y/N) ");
 		if(substr(strtolower(trim($cont)),0,1)=="y"){
