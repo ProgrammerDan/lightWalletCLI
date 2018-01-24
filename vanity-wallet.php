@@ -200,8 +200,6 @@ while(1) {
 
         $address=get_address($public_key);
 
-	echo $address."\n";
-
 	if (($vanity && stripos($address, $vanity) !== FALSE && stripos($address, $vanity) === 0) ||
 		($sanity && stripos($address, $sanity) !== FALSE && stripos($address, $sanity) >= 0)) {
 		echo "Found a match: ".$address."\n";
